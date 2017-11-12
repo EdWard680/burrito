@@ -1,4 +1,5 @@
 package com.crowdsourced_burrito.burrito;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.util.Log;
@@ -18,6 +19,7 @@ public class Question {
     private int id;
     private QuestionMetaData data;
     private User asker;
+    private Answer[] answers;
 
     public Question(String title, String desc, QuestionMetaData data)
     {
@@ -37,6 +39,11 @@ public class Question {
         {
             asker = User.merge(new User(username));
         }
+
+        JSONArray a = json.optJSONArray("answers");
+        answers = new Answer[a.length()];
+        for(int i = 0; i < a.length(); i++)
+            answers[i] = new Answer(a.optJSONObject(i));
 
         data = new QuestionMetaData(json.optJSONObject("meta"));
     }
@@ -97,4 +104,5 @@ public class Question {
     public String getDescription() {return description;}
     public User getUser() {return asker;}
     public QuestionMetaData getData() {return data;}
+    public Answer[] getAnswers() {return answers;}
 }
