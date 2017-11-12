@@ -15,6 +15,7 @@
 
     <include
         layout="@layout/score_buttons"
+        android:id="@+id/answerScore"
         />
 
     <LinearLayout
@@ -24,9 +25,11 @@
 
         <include
             layout="@layout/user_rating"
+            android:id="@+id/userRatingLayout"
             />
 
         <TextView
+            android:id="@+id/answer_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
