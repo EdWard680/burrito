@@ -20,6 +20,10 @@
             android:name=".NewQuestionActivity"
             android:label="@string/app_name">
         </activity>
+        <activity
+            android:name=".ViewQuestionActivity"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>
