@@ -1,0 +1,8 @@
+{
+  "id": 0,
+  "content": { ??? },
+  "user": "userURI",
+  "question": "questionURI",
+  "rating": 100,
+  "time": { timestamp }
+}

@@ -1,0 +1,14 @@
+{
+  "id": 0,
+  "type": "basic",
+  "asker": "userURI",
+  "title": "How do I make a question object",
+  "description": "This might be unnecessary but it doesn't hurt to have",
+  "location": { some location object },
+  "time": { some time object },
+  "image-required": false,
+  "tags": [ "tag1", "tag2" ],
+  "answers": [ "answerURI1, "answerURI2" ],
+  "accepted": "answerURI1",
+  "rating": 3
+}
