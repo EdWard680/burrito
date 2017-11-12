@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
 //        questionSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
 //        questionListView = findViewById(R.id.activity_main_listview);
 
@@ -48,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText("(Skree-EEEE)");
     }
+    public void IntentViewQuestion(android.view.View view) {
+        startActivity(new Intent(MainActivity.this, ViewQuestionActivity.class));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
