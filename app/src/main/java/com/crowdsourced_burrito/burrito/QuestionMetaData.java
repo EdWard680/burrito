@@ -52,24 +52,38 @@ public class QuestionMetaData {
                 Log.e(TAG, e.getLocalizedMessage());
             }
         }
-
-        if(when != null)
+        else
         {
             try {
-                ret.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(when));
+                ret.put("tags", JSONObject.NULL);
             } catch (JSONException e) {
                 Log.e(TAG, e.getLocalizedMessage());
             }
         }
 
-        if(where != null)
-        {
-            try {
+
+        try {
+            if(when != null)
+                ret.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(when));
+            else
+                ret.put("time", JSONObject.NULL);
+        } catch (JSONException e) {
+            Log.e(TAG, e.getLocalizedMessage());
+        }
+
+        try {
+            if(where != null)
+            {
                 ret.put("lat", where.getLatLng().latitude);
                 ret.put("lng", where.getLatLng().longitude);
-            } catch (JSONException e) {
-                Log.e(TAG, e.getLocalizedMessage());
             }
+            else
+            {
+                ret.put("lat", JSONObject.NULL);
+                ret.put("lng", JSONObject.NULL);
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, e.getLocalizedMessage());
         }
 
         return ret;
