@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+
+
+    <include
+        layout="@layout/question_list_item"
+        android:id="@+id/view_question_question"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" />
 
-        <include
-            layout="@layout/question_list_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <!--<include-->
+        <!--layout="@layout/answer_list_item"-->
+        <!--/>-->
 
-        <!--<include-->
-            <!--layout="@layout/answer_list_item"-->
-            <!--/>-->
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/answer_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <ListView
             android:id="@+id/answer_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/new_question_button"
@@ -34,7 +41,7 @@
             app:layout_anchor="@id/answer_list"
             app:layout_anchorGravity="bottom|right|end"
             app:backgroundTint="#9c0014"/>
+    </android.support.design.widget.CoordinatorLayout>
 
-    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

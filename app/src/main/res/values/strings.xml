@@ -9,5 +9,6 @@
         <item>Sodexo</item>
         <item>Burrito</item>
     </string-array>
+    <string name="login">Login</string>
 
 </resources>
