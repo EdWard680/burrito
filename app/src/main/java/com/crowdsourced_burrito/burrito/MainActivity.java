@@ -14,6 +14,8 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,10 +48,24 @@ public class MainActivity extends AppCompatActivity {
 
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText("(Skree-EEEE)");
+
+        findViewById(R.id.included_layout).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                IntentViewQuestion(arg0);
+            }
+        });
+        findViewById(R.id.included_layout).bringToFront();
     }
     public void IntentViewQuestion(android.view.View view) {
         startActivity(new Intent(MainActivity.this, ViewQuestionActivity.class));
     }
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
