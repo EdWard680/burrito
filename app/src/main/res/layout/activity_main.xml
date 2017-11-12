@@ -8,6 +8,8 @@
 
     <include
         layout="@layout/question_list_item"
+        android:background="@android:drawable/list_selector_background"
+        android:onClick="IntentViewQuestion"
         />
 
     <android.support.design.widget.CoordinatorLayout
