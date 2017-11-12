@@ -19,10 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ServerHandler.setHost("129.161.69.63");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         FloatingActionButton new_question = findViewById(R.id.new_question_button);
         new_question.setOnClickListener(new View.OnClickListener() {

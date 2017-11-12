@@ -24,6 +24,19 @@ import java.net.URL;
 
 public class ServerHandler
 {
+    private static ServerHandler instance = null;
+
+    public static void setHost(String host)
+    {
+        instance = new ServerHandler(host);
+    }
+
+    public static ServerHandler get()
+    {
+        return instance;
+    }
+
+
     private static final String TAG = "ServerHandler";
     private String host;
     private String sessId;
