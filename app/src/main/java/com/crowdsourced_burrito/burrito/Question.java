@@ -21,6 +21,11 @@ public class Question {
     private User asker;
     private Answer[] answers;
 
+    public Question(int id)
+    {
+        this.id = id;
+    }
+
     public Question(String title, String desc, QuestionMetaData data)
     {
         this.id = -1;  // uninitialized
@@ -105,4 +110,5 @@ public class Question {
     public User getUser() {return asker;}
     public QuestionMetaData getData() {return data;}
     public Answer[] getAnswers() {return answers;}
+    public int getId() {return id;}
 }

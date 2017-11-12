@@ -35,10 +35,17 @@ public class ViewQuestionActivity extends AppCompatActivity {
 
         }
     }
+    protected Question question;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_question_activity);
+
+        int qid = this.getIntent().getIntExtra("question", 0);
+
+        ServerHandler handler = ServerHandler.get();
+        question = handler.view(new Question(qid));
 
         FloatingActionButton new_question = findViewById(R.id.new_answer_button);
         new_question.setOnClickListener(new View.OnClickListener() {
