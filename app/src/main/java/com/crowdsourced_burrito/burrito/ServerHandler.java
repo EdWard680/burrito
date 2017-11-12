@@ -65,6 +65,7 @@ public class ServerHandler
                 http.setRequestMethod("POST");
                 //http.setDoOutput(true);
                 http.setRequestProperty("json", json_string);
+
                 //http.setFixedLengthStreamingMode(json_string.length());
 
                 //OutputStream out = new BufferedOutputStream(http.getOutputStream());
@@ -89,6 +90,7 @@ public class ServerHandler
             ret = new JSONObject(output);
         } catch (JSONException e) {
             Log.e(TAG, e.getLocalizedMessage());
+            ret = new JSONObject();
         }
 
         return ret;
@@ -143,7 +145,10 @@ public class ServerHandler
 
         JSONObject response = request("/add.php", q.toJSON());
 
-        return response.toString();
+        if(response.length() == 0)
+            return "u did it";
+        else
+            return response.toString();
     }
 
 
