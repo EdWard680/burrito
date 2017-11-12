@@ -125,6 +125,7 @@ public class ServerHandler
             ret = new JSONObject(output.toString());
         } catch (JSONException e) {
             Log.e(TAG, e.getLocalizedMessage());
+            ret = new JSONObject();
         }
 
         return ret;
@@ -179,7 +180,10 @@ public class ServerHandler
 
         JSONObject response = request("/add.php", q.toJSON());
 
-        return response.toString();
+        if(response.length() == 0)
+            return "u did it";
+        else
+            return response.toString();
     }
 
 
