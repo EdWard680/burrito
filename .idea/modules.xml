@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Burrito.iml" filepath="$PROJECT_DIR$/Burrito.iml" />
+      <module fileurl="file://C:\Users\dawnkd\Documents\HackRPI\2017\burrito\Burrito.iml" filepath="C:\Users\dawnkd\Documents\HackRPI\2017\burrito\Burrito.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\dawnkd\Documents\HackRPI\2017\burrito\app\app.iml" filepath="C:\Users\dawnkd\Documents\HackRPI\2017\burrito\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/burrito.iml" filepath="$PROJECT_DIR$/burrito.iml" />
     </modules>
   </component>
 </project>
