@@ -6,6 +6,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
@@ -44,6 +47,26 @@ public class MainActivity extends AppCompatActivity {
 
         //TextView tv = (TextView) findViewById(R.id.sample_text);
         //tv.setText("(Skree-EEEE)");
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu, menu); //your file name
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.login:
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                // EX : call intent if you want to swich to other activity
+                return true;
+//            case R.id.help:
+//                //your code
+//                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

@@ -4,44 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ToggleButton
-            android:id="@+id/up_votes"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_centerVertical="true"
-            android:layout_margin="1dp"
-            android:background="@drawable/up_arrow_button"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:textOff=""
-            android:textOn="" />
-
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingStart="2dp"
-            android:paddingEnd="2dp"
-            android:text="Score" />
-
-        <ToggleButton
-            android:id="@+id/down_votes"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_centerVertical="true"
-            android:layout_margin="1dp"
-            android:background="@drawable/down_arrow_button"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:textOff=""
-            android:textOn="" />
-    </LinearLayout>
+        <include
+            layout="@layout/score_buttons"
+            />
 
     <RelativeLayout
         android:layout_width="wrap_content" android:layout_height="wrap_content"
