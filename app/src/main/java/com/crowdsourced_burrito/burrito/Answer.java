@@ -37,7 +37,7 @@ public class Answer
         try {
             timestamp = SimpleDateFormat.getInstance().parse(json.optString("timestamp", "4:20AM 4/20/2020"));
         } catch (ParseException e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, e.getLocalizedMessage());
         }
     }
 

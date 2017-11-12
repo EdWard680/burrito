@@ -22,21 +22,14 @@ public class User
     private String last;
     private Integer rating;
 
-    public static User get(JSONObject json)
+    public static User merge(User input)
     {
-        String name = null;
-        try {
-            name = json.getString("name");
-        } catch (JSONException e) {
-            Log.e(TAG, e.getMessage());
-        }
+        if(input.name == null) return null;
+        User ret = users.putIfAbsent(input.name, input);
 
-        User input = new User(json);
-        User ret = users.putIfAbsent(name, input);
-
-        if(input.first != null) ret.first = input.first;
-        if(input.last != null) ret.last = input.last;
-        if(input.rating != null) ret.rating = input.rating;
+        if (input.first != null) ret.first = input.first;
+        if (input.last != null) ret.last = input.last;
+        if (input.rating != null) ret.rating = input.rating;
 
         return ret;
     }
