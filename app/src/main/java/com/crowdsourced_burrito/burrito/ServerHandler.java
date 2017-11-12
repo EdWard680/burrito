@@ -18,6 +18,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 /**
  * Created by warde on 11/12/2017.
@@ -185,6 +186,14 @@ public class ServerHandler
         else
             return response.toString();
     }
+
+    public Question view(Question q)
+    {
+        JSONObject response = request("/view.php", q.toJSON());
+
+        return new Question(response);
+    }
+
 
 
 }

@@ -53,13 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                IntentViewQuestion(arg0);
+                IntentViewQuestion(arg0, new Question(0));
             }
         });
         findViewById(R.id.included_layout).bringToFront();
     }
-    public void IntentViewQuestion(android.view.View view) {
-        startActivity(new Intent(MainActivity.this, ViewQuestionActivity.class));
+    public void IntentViewQuestion(android.view.View view, Question question) {
+        Intent intent = new Intent(MainActivity.this, ViewQuestionActivity.class);
+        intent.putExtra("questionID", question.getId());
+        startActivity(intent);
     }
 
 
