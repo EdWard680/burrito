@@ -45,7 +45,7 @@ public class NewQuestionActivity extends AppCompatActivity {
     public void submitQuestion(View view)
     {
         ServerHandler handler = ServerHandler.get();
-        handler.login("chernl2","word");
+        //handler.login("chernl2","word");
         if(place ==null)
         {
             Toast toast = Toast.makeText(getApplicationContext(),"Please choose a Location",Toast.LENGTH_SHORT);
@@ -58,8 +58,9 @@ public class NewQuestionActivity extends AppCompatActivity {
         String[] tags = ((AutoCompleteTextView)findViewById(R.id.autoCompleteTextView2)).getText().toString().split(",");
         QuestionMetaData metaData = new QuestionMetaData(tags,null,place);
         Question question = new Question(title,description,metaData);
-        handler.add(question);
-
+        Toast toast = Toast.makeText(getApplicationContext(), handler.add(question), Toast.LENGTH_LONG);
+        toast.show();
+        this.finish();
     }
     public void pickLocation(View view)
     {
