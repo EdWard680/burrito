@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="tags">
+        <item>things</item>
+        <item>another tag</item>
+        <item>got some good tags here</item>
+        <item>tag4</item>
+    </string-array>
+</resources>

@@ -24,5 +24,11 @@ public class NewQuestionActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         question_type_spinner.setAdapter(question_type_adapter);
 
+        String[] tags = getResources().getStringArray(R.array.tags);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,tags);
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
+        textView.setAdapter(adapter);
+
+
     }
 }
