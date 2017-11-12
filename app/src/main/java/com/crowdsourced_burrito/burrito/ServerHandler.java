@@ -2,6 +2,7 @@ package com.crowdsourced_burrito.burrito;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,6 +11,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.HttpCookie;
@@ -192,6 +194,25 @@ public class ServerHandler
         JSONObject response = request("/view.php", q.toJSON());
 
         return new Question(response);
+    }
+
+    public ArrayList<Question> poll(QuestionMetaData data)
+    {
+        JSONObject response = request("/simpall.php", data.toJSON());
+
+        try {
+            JSONArray array = response.getJSONArray("questions");
+            ArrayList<Question> ret = new ArrayList<>(array.length());
+            for(int i = 0; i < array.length(); i++)
+                ret.set(i, new Question(array.getJSONObject(i)));
+
+            return ret;
+        } catch (JSONException e) {
+            Log.e(TAG, e.getLocalizedMessage());
+        }
+
+        return new ArrayList<>();
+
     }
 
 
