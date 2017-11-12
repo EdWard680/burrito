@@ -59,7 +59,7 @@ public class ServerHandler
         String json_string = params.toString();
         String output = "";
         try {
-            URL url = new URL(host + page);
+            URL url = new URL("http://" + host + page);
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             try {
                 http.setRequestMethod("POST");
