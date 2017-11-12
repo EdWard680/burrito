@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * Created by warde on 11/12/2017.
@@ -44,7 +45,7 @@ public class ServerHandler
 
     public ServerHandler(String url)
     {
-        this.host = host;
+        this.host = url;
         CookieHandler.setDefault(cookieManager);
     }
 
@@ -57,28 +58,63 @@ public class ServerHandler
     private JSONObject request(String page, JSONObject params)
     {
         String json_string = params.toString();
-        String output = "";
+        StringBuffer output = new StringBuffer("");
         try {
             URL url = new URL("http://" + host + page);
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            try {
+            final HttpURLConnection http = (HttpURLConnection) url.openConnection();
+
                 http.setRequestMethod("POST");
-                //http.setDoOutput(true);
-                http.setRequestProperty("json", json_string);
-                //http.setFixedLengthStreamingMode(json_string.length());
+                http.setDoOutput(true);
+                http.setDoInput(true);
+                //http.setRequestProperty("json", json_string);
+                class MyThread implements Runnable {
+                    private  HttpURLConnection httpURLConnection;
+                    private  StringBuffer stringBuffer;
+                    private  String params;
 
-                //OutputStream out = new BufferedOutputStream(http.getOutputStream());
-                //out.write(json_string.getBytes());
+                    public MyThread(HttpURLConnection connection, StringBuffer str, String params) {
+                        httpURLConnection = connection;
+                        stringBuffer = str;
+                        this.params = params;
+                    }
 
-                InputStream in = new BufferedInputStream(http.getInputStream());
+                    public void run() {
+                        try {
+                            http.setFixedLengthStreamingMode(params.length());
 
-                byte[] b = new byte[256];
-                while (in.read(b) != -1) {
-                    output += new String(b);
+
+                            OutputStream out = new BufferedOutputStream(http.getOutputStream());
+                            out.write(params.getBytes());
+                            out.flush();
+                            out.close();
+                            http.connect();
+                            InputStream in = new BufferedInputStream(http.getInputStream());
+
+                            byte[] b = new byte[256];
+                            while (in.read(b) != -1) {
+                                stringBuffer.append(new String(b));
+                            }
+                            Log.i(TAG,stringBuffer.toString());
+                        }
+                        catch (Exception e)
+                        {
+                            Log.e(TAG,e.getLocalizedMessage());
+                        }
+                        finally {
+                            http.disconnect();
+                        }
+                    }
                 }
-            } finally {
-                http.disconnect();
-            }
+                Thread thread = new Thread(new MyThread(http, output, "json="+URLEncoder.encode(json_string, "UTF-8")));
+
+                thread.start();
+                try {
+                    thread.join();
+                }
+                catch (Exception e)
+                {
+                    Log.e(TAG,e.getLocalizedMessage());
+                }
 
         } catch(IOException e) {
             Log.e(TAG, e.getLocalizedMessage());
@@ -86,7 +122,7 @@ public class ServerHandler
 
         JSONObject ret = null;
         try {
-            ret = new JSONObject(output);
+            ret = new JSONObject(output.toString());
         } catch (JSONException e) {
             Log.e(TAG, e.getLocalizedMessage());
         }
