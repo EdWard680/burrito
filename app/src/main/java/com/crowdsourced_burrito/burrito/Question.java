@@ -12,12 +12,13 @@ public class Question {
 
     private String title;
     private String description;
-    // private int id;
+    private int id;
     // private Tag[] tags;
-    // private User asker;
+    private User asker;
 
     public Question(String title, String desc)
     {
+        this.id = -1;  // uninitialized
         this.title = title;
         this.description = desc;
     }
@@ -26,6 +27,8 @@ public class Question {
     {
         title = json.optString("title");
         description = json.optString("desc");
+        id = json.optInt("id");
+
     }
 
     public JSONObject toJSON()
@@ -44,6 +47,14 @@ public class Question {
             Log.e(TAG, e.getLocalizedMessage());
         }
 
+        if(id >= 0)
+        {
+            try {
+                ret.put("id", id);
+            } catch (JSONException e) {
+                Log.e(TAG, e.getLocalizedMessage());
+            }
+        }
         return ret;
     }
 
